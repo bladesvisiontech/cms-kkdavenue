@@ -5,11 +5,13 @@ import PageHeader from '@/components/PageHeader';
 import SaveButton from '@/components/SaveButton';
 import Toast from '@/components/Toast';
 import { usePreviewSync } from '@/lib/usePreviewSync';
+import ImagePicker from '@/components/ImagePicker';
 
 interface WednesdayItem { name: string; price: string }
 interface FridayItem { name: string; price: string }
 
 interface MenuData {
+  images: { hero: string; everydayPlate: string; soulFood1: string; soulFood2: string };
   hero: { tag: string; title: string; titleEm: string; subtitle: string };
   specials: {
     sundayMonday: { day: string; description: string; price: string };
@@ -220,6 +222,17 @@ export default function MenuPage() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Food Photos */}
+        <section className="bg-card border border-border rounded-lg p-6">
+          <h2 className="text-sm font-semibold text-text mb-4">Food Photos</h2>
+          <div className="grid grid-cols-2 gap-6">
+            <ImagePicker label="Hero Background" value={data.images?.hero ?? ''} onChange={(url) => setData({ ...data, images: { ...data.images, hero: url } })} />
+            <ImagePicker label="Everyday Menu Plate" value={data.images?.everydayPlate ?? ''} onChange={(url) => setData({ ...data, images: { ...data.images, everydayPlate: url } })} />
+            <ImagePicker label="Soul Food Photo 1" value={data.images?.soulFood1 ?? ''} onChange={(url) => setData({ ...data, images: { ...data.images, soulFood1: url } })} />
+            <ImagePicker label="Soul Food Photo 2" value={data.images?.soulFood2 ?? ''} onChange={(url) => setData({ ...data, images: { ...data.images, soulFood2: url } })} />
           </div>
         </section>
 

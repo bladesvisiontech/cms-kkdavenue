@@ -5,6 +5,7 @@ import PageHeader from '@/components/PageHeader';
 import SaveButton from '@/components/SaveButton';
 import Toast from '@/components/Toast';
 import { usePreviewSync } from '@/lib/usePreviewSync';
+import ImagePicker from '@/components/ImagePicker';
 
 interface PillarItem { id: string; title: string; desc: string }
 interface AudienceCard { tag: string; title: string; titleEm: string; desc: string; cta: string; link: string }
@@ -17,6 +18,7 @@ interface HomeData {
   audience: { card1: AudienceCard; card2: AudienceCard };
   pillars: { tag: string; title: string; titleEm: string; subtitle: string; items: PillarItem[] };
   portfolio: { tag: string; title: string; titleEm: string; ctaLabel: string; ctaLink: string };
+  portfolioImages: string[];
   testimonial: { quote: string; emphasis: string; author: string; context: string };
 }
 
@@ -50,7 +52,7 @@ export default function HomePage() {
 
   if (!data) return <div className="text-muted text-sm">Loading...</div>;
 
-  const { hero, audience, pillars, portfolio, testimonial } = data;
+  const { hero, audience, pillars, portfolio, portfolioImages, testimonial } = data;
 
   return (
     <div>
@@ -135,6 +137,25 @@ export default function HomePage() {
           </div>
         </section>
 
+
+        {/* Portfolio Images */}
+        <section className="bg-card border border-border rounded-lg p-6">
+          <h2 className="text-sm font-semibold text-text mb-4">Portfolio Grid Photos</h2>
+          <div className="grid grid-cols-2 gap-6">
+            {[0, 1, 2, 3].map((i) => (
+              <ImagePicker
+                key={i}
+                label={`Photo ${i + 1}`}
+                value={portfolioImages?.[i] ?? ''}
+                onChange={(url) => {
+                  const updated = [...(portfolioImages ?? [])];
+                  updated[i] = url;
+                  setData({ ...data, portfolioImages: updated });
+                }}
+              />
+            ))}
+          </div>
+        </section>
 
         {/* Testimonial */}
         <section className="bg-card border border-border rounded-lg p-6">
