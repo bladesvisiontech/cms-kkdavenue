@@ -5,11 +5,12 @@ import PageHeader from '@/components/PageHeader';
 import SaveButton from '@/components/SaveButton';
 import Toast from '@/components/Toast';
 import { usePreviewSync } from '@/lib/usePreviewSync';
+import ImagePicker from '@/components/ImagePicker';
 
 interface ValueItem { id: string; title: string; desc: string }
 interface AboutData {
   hero: { tag: string; title: string; titleEm: string; subtitle: string };
-  founder: { tag: string; name: string; title: string; titleEm: string; titleSuffix: string; paragraphs: string[] };
+  founder: { tag: string; name: string; image: string; title: string; titleEm: string; titleSuffix: string; paragraphs: string[] };
   values: { tag: string; title: string; items: ValueItem[] };
   space: { tag: string; title: string; titleEm: string; desc: string };
 }
@@ -76,6 +77,11 @@ export default function AboutPage() {
               <div><label>Badge Label</label><input value={founder.tag} onChange={(e) => setData({ ...data, founder: { ...founder, tag: e.target.value } })} /></div>
               <div><label>Name</label><input value={founder.name} onChange={(e) => setData({ ...data, founder: { ...founder, name: e.target.value } })} /></div>
             </div>
+            <ImagePicker
+              label="Founder Photo"
+              value={founder.image ?? ''}
+              onChange={(url) => setData({ ...data, founder: { ...founder, image: url } })}
+            />
             <div className="grid grid-cols-3 gap-3">
               <div><label>Title</label><input value={founder.title} onChange={(e) => setData({ ...data, founder: { ...founder, title: e.target.value } })} /></div>
               <div><label>Title (italic / gold)</label><input value={founder.titleEm} onChange={(e) => setData({ ...data, founder: { ...founder, titleEm: e.target.value } })} /></div>

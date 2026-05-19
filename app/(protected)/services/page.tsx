@@ -6,6 +6,7 @@ import SaveButton from '@/components/SaveButton';
 import Toast from '@/components/Toast';
 import type { ServiceItem } from '@/types';
 import { usePreviewSync } from '@/lib/usePreviewSync';
+import ImagePicker from '@/components/ImagePicker';
 
 interface HeroData { tag: string; title: string; titleEm: string; titleSuffix: string; subtitle: string }
 interface ServicesData {
@@ -105,6 +106,11 @@ export default function ServicesPage() {
                   <input value={item.link} onChange={(e) => updateItem(i, 'link', e.target.value)} />
                 </div>
               </div>
+              <ImagePicker
+                label="Service Photo"
+                value={item.image}
+                onChange={(url) => updateItem(i, 'image', url)}
+              />
             </div>
           </section>
         ))}

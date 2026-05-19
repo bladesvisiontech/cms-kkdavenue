@@ -17,6 +17,7 @@ interface HomeData {
   audience: { card1: AudienceCard; card2: AudienceCard };
   pillars: { tag: string; title: string; titleEm: string; subtitle: string; items: PillarItem[] };
   portfolio: { tag: string; title: string; titleEm: string; ctaLabel: string; ctaLink: string };
+  testimonial: { quote: string; emphasis: string; author: string; context: string };
 }
 
 export default function HomePage() {
@@ -49,7 +50,7 @@ export default function HomePage() {
 
   if (!data) return <div className="text-muted text-sm">Loading...</div>;
 
-  const { hero, audience, pillars, portfolio } = data;
+  const { hero, audience, pillars, portfolio, testimonial } = data;
 
   return (
     <div>
@@ -131,6 +132,33 @@ export default function HomePage() {
             <div><label>Title</label><input value={portfolio.title} onChange={(e) => setData({ ...data, portfolio: { ...portfolio, title: e.target.value } })} /></div>
             <div><label>Title (italic / gold)</label><input value={portfolio.titleEm} onChange={(e) => setData({ ...data, portfolio: { ...portfolio, titleEm: e.target.value } })} /></div>
             <div><label>CTA Label</label><input value={portfolio.ctaLabel} onChange={(e) => setData({ ...data, portfolio: { ...portfolio, ctaLabel: e.target.value } })} /></div>
+          </div>
+        </section>
+
+      </div>
+
+        {/* Testimonial */}
+        <section className="bg-card border border-border rounded-lg p-6">
+          <h2 className="text-sm font-semibold text-text mb-4">Homepage Testimonial</h2>
+          <div className="space-y-4">
+            <div>
+              <label>Quote</label>
+              <textarea rows={3} value={testimonial.quote} onChange={(e) => setData({ ...data, testimonial: { ...testimonial, quote: e.target.value } })} />
+            </div>
+            <div>
+              <label>Emphasized phrase (shown in gold)</label>
+              <input value={testimonial.emphasis} onChange={(e) => setData({ ...data, testimonial: { ...testimonial, emphasis: e.target.value } })} />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label>Author</label>
+                <input value={testimonial.author} onChange={(e) => setData({ ...data, testimonial: { ...testimonial, author: e.target.value } })} />
+              </div>
+              <div>
+                <label>Context (e.g. "Private Event")</label>
+                <input value={testimonial.context} onChange={(e) => setData({ ...data, testimonial: { ...testimonial, context: e.target.value } })} />
+              </div>
+            </div>
           </div>
         </section>
 

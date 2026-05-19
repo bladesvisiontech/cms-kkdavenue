@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
   }
 
   const ext = file.name.split('.').pop() ?? 'jpg';
-  const filename = `gallery-${Date.now()}.${ext}`;
+  const filename = `cms-${Date.now()}.${ext}`;
 
   const arrayBuffer = await file.arrayBuffer();
   const base64 = Buffer.from(arrayBuffer).toString('base64');

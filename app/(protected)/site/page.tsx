@@ -25,12 +25,6 @@ interface SiteData {
     instagramHandle: string;
     tiktok: string;
   };
-  testimonial: {
-    quote: string;
-    emphasis: string;
-    author: string;
-    context: string;
-  };
 }
 
 export default function SitePage() {
@@ -190,30 +184,6 @@ export default function SitePage() {
           </div>
         </section>
 
-        {/* Testimonial */}
-        <section className="bg-card border border-border rounded-lg p-6">
-          <h2 className="text-sm font-semibold text-text mb-5">Homepage Testimonial</h2>
-          <div className="space-y-4">
-            <div>
-              <label>Quote</label>
-              <textarea rows={3} value={data.testimonial.quote} onChange={(e) => setData({ ...data, testimonial: { ...data.testimonial, quote: e.target.value } })} />
-            </div>
-            <div>
-              <label>Emphasized phrase (shown in gold)</label>
-              <input value={data.testimonial.emphasis} onChange={(e) => setData({ ...data, testimonial: { ...data.testimonial, emphasis: e.target.value } })} />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label>Author</label>
-                <input value={data.testimonial.author} onChange={(e) => setData({ ...data, testimonial: { ...data.testimonial, author: e.target.value } })} />
-              </div>
-              <div>
-                <label>Context (e.g. "Private Event")</label>
-                <input value={data.testimonial.context} onChange={(e) => setData({ ...data, testimonial: { ...data.testimonial, context: e.target.value } })} />
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
 
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
