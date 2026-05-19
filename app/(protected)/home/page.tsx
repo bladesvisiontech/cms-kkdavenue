@@ -135,7 +135,6 @@ export default function HomePage() {
           </div>
         </section>
 
-      </div>
 
         {/* Testimonial */}
         <section className="bg-card border border-border rounded-lg p-6">
