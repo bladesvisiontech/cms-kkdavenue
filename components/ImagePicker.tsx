@@ -2,6 +2,14 @@
 
 import { useRef, useState } from 'react';
 
+const SITE_URL = process.env.NEXT_PUBLIC_PREVIEW_URL ?? 'https://www.kkdavenuehtx.com';
+
+function resolveUrl(value: string) {
+  if (!value) return '';
+  if (value.startsWith('http')) return value;
+  return `${SITE_URL}${value}`;
+}
+
 interface Props {
   value: string;
   onChange: (url: string) => void;
@@ -32,7 +40,7 @@ export default function ImagePicker({ value, onChange, label }: Props) {
         <div className="w-20 h-20 bg-border rounded overflow-hidden shrink-0 border border-border">
           {value && (
             <img
-              src={value}
+              src={resolveUrl(value)}
               alt=""
               className="w-full h-full object-cover"
               onError={(e) => { (e.target as HTMLImageElement).style.opacity = '0'; }}
