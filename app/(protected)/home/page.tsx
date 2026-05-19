@@ -16,6 +16,7 @@ interface HomeData {
     focusLabel: string; focusText: string;
   };
   audience: { card1: AudienceCard; card2: AudienceCard };
+  audienceImages: string[];
   pillars: { tag: string; title: string; titleEm: string; subtitle: string; items: PillarItem[] };
   portfolio: { tag: string; title: string; titleEm: string; ctaLabel: string; ctaLink: string };
   portfolioImages: string[];
@@ -52,7 +53,7 @@ export default function HomePage() {
 
   if (!data) return <div className="text-muted text-sm">Loading...</div>;
 
-  const { hero, audience, pillars, portfolio, portfolioImages, testimonial } = data;
+  const { hero, audience, audienceImages, pillars, portfolio, portfolioImages, testimonial } = data;
 
   return (
     <div>
@@ -137,6 +138,15 @@ export default function HomePage() {
           </div>
         </section>
 
+
+        {/* Audience Card Images */}
+        <section className="bg-card border border-border rounded-lg p-6">
+          <h2 className="text-sm font-semibold text-text mb-4">Audience Card Photos</h2>
+          <div className="grid grid-cols-2 gap-6">
+            <ImagePicker label="Card 1 Photo" value={audienceImages?.[0] ?? ''} onChange={(url) => { const updated = [...(audienceImages ?? [])]; updated[0] = url; setData({ ...data, audienceImages: updated }); }} />
+            <ImagePicker label="Card 2 Photo" value={audienceImages?.[1] ?? ''} onChange={(url) => { const updated = [...(audienceImages ?? [])]; updated[1] = url; setData({ ...data, audienceImages: updated }); }} />
+          </div>
+        </section>
 
         {/* Portfolio Images */}
         <section className="bg-card border border-border rounded-lg p-6">

@@ -12,7 +12,7 @@ interface AboutData {
   hero: { tag: string; title: string; titleEm: string; subtitle: string };
   founder: { tag: string; name: string; image: string; title: string; titleEm: string; titleSuffix: string; paragraphs: string[] };
   values: { tag: string; title: string; items: ValueItem[] };
-  space: { tag: string; title: string; titleEm: string; desc: string };
+  space: { tag: string; title: string; titleEm: string; image: string; desc: string };
 }
 
 export default function AboutPage() {
@@ -136,6 +136,7 @@ export default function AboutPage() {
               <div><label>Title (italic / gold)</label><input value={space.titleEm} onChange={(e) => setData({ ...data, space: { ...space, titleEm: e.target.value } })} /></div>
             </div>
             <div><label>Description</label><textarea rows={3} value={space.desc} onChange={(e) => setData({ ...data, space: { ...space, desc: e.target.value } })} /></div>
+            <ImagePicker label="Venue Photo" value={space.image ?? ''} onChange={(url) => setData({ ...data, space: { ...space, image: url } })} />
           </div>
         </section>
 
