@@ -8,7 +8,7 @@ import type { ServiceItem } from '@/types';
 import { usePreviewSync } from '@/lib/usePreviewSync';
 import ImagePicker from '@/components/ImagePicker';
 
-interface HeroData { tag: string; title: string; titleEm: string; titleSuffix: string; subtitle: string }
+interface HeroData { tag: string; title: string; titleEm: string; titleSuffix: string; subtitle: string; image: string }
 interface ServicesData {
   hero: HeroData;
   items: ServiceItem[];
@@ -71,6 +71,7 @@ export default function ServicesPage() {
               <div><label>Title Suffix</label><input value={data.hero.titleSuffix} onChange={(e) => setData({ ...data, hero: { ...data.hero, titleSuffix: e.target.value } })} /></div>
             </div>
             <div><label>Subtitle</label><textarea rows={2} value={data.hero.subtitle} onChange={(e) => setData({ ...data, hero: { ...data.hero, subtitle: e.target.value } })} /></div>
+            <ImagePicker label="Hero Background Photo" value={data.hero.image ?? ''} onChange={(url) => setData({ ...data, hero: { ...data.hero, image: url } })} />
           </div>
         </section>
 

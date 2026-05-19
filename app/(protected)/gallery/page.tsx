@@ -6,9 +6,10 @@ import SaveButton from '@/components/SaveButton';
 import Toast from '@/components/Toast';
 import type { GalleryItem } from '@/types';
 import { usePreviewSync } from '@/lib/usePreviewSync';
+import ImagePicker from '@/components/ImagePicker';
 
 interface GalleryData {
-  hero: { tag: string; title: string; titleEm: string; subtitle: string };
+  hero: { tag: string; title: string; titleEm: string; subtitle: string; image: string };
   items: GalleryItem[];
 }
 
@@ -112,6 +113,7 @@ export default function GalleryPage() {
             <div><label>Title (italic / gold)</label><input value={data.hero.titleEm} onChange={(e) => setData({ ...data, hero: { ...data.hero, titleEm: e.target.value } })} /></div>
           </div>
           <div><label>Subtitle</label><textarea rows={2} value={data.hero.subtitle} onChange={(e) => setData({ ...data, hero: { ...data.hero, subtitle: e.target.value } })} /></div>
+          <ImagePicker label="Hero Background Photo" value={data.hero.image ?? ''} onChange={(url) => setData({ ...data, hero: { ...data.hero, image: url } })} />
         </div>
       </div>
 

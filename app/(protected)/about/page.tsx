@@ -9,7 +9,7 @@ import ImagePicker from '@/components/ImagePicker';
 
 interface ValueItem { id: string; title: string; desc: string }
 interface AboutData {
-  hero: { tag: string; title: string; titleEm: string; subtitle: string };
+  hero: { tag: string; title: string; titleEm: string; subtitle: string; image: string };
   founder: { tag: string; name: string; image: string; title: string; titleEm: string; titleSuffix: string; paragraphs: string[] };
   values: { tag: string; title: string; items: ValueItem[] };
   space: { tag: string; title: string; titleEm: string; image: string; desc: string };
@@ -66,6 +66,7 @@ export default function AboutPage() {
               <div><label>Title (italic / gold)</label><input value={hero.titleEm} onChange={(e) => setData({ ...data, hero: { ...hero, titleEm: e.target.value } })} /></div>
             </div>
             <div><label>Subtitle</label><textarea rows={2} value={hero.subtitle} onChange={(e) => setData({ ...data, hero: { ...hero, subtitle: e.target.value } })} /></div>
+            <ImagePicker label="Hero Background Photo" value={hero.image ?? ''} onChange={(url) => setData({ ...data, hero: { ...hero, image: url } })} />
           </div>
         </section>
 

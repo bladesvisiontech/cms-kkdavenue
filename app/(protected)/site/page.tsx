@@ -5,12 +5,13 @@ import PageHeader from '@/components/PageHeader';
 import SaveButton from '@/components/SaveButton';
 import Toast from '@/components/Toast';
 import { usePreviewSync } from '@/lib/usePreviewSync';
+import ImagePicker from '@/components/ImagePicker';
 
 interface NavItem { label: string; path: string }
 interface SiteData {
   nav: NavItem[];
   navCta: { label: string; path: string };
-  hero: { tag: string; title: string; titleEm: string; titleSuffix: string; subtitle: string };
+  hero: { tag: string; title: string; titleEm: string; titleSuffix: string; subtitle: string; image: string };
   contact: {
     address: string;
     city: string;
@@ -94,6 +95,7 @@ export default function SitePage() {
               <div><label>Title Suffix</label><input value={data.hero.titleSuffix} onChange={(e) => setData({ ...data, hero: { ...data.hero, titleSuffix: e.target.value } })} /></div>
             </div>
             <div><label>Subtitle</label><textarea rows={2} value={data.hero.subtitle} onChange={(e) => setData({ ...data, hero: { ...data.hero, subtitle: e.target.value } })} /></div>
+            <ImagePicker label="Contact Page Hero Photo" value={data.hero.image ?? ''} onChange={(url) => setData({ ...data, hero: { ...data.hero, image: url } })} />
           </div>
         </section>
 
