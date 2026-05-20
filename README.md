@@ -95,3 +95,4 @@ components/
   PageHeader.tsx
 middleware.ts       — route protection
 ```
+# CMS KKD Avenue
